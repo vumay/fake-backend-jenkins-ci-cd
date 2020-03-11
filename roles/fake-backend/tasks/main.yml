@@ -26,8 +26,7 @@
   tags:
     - build
     - deploy
-
-- name: Retrieve fake-backend addons source code
+- name: retrieve battleboat code source
   git:
     repo: git@github.com:vumay/battleboat-jenkins-CD.git
     dest: "{{ home }}/fake-backend"
