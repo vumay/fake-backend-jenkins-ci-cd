@@ -29,7 +29,7 @@
 - name: retrieve battleboat code source
   git:
     repo: git@github.com:vumay/battleboat-jenkins-CD.git
-    dest: "{{ home }}"
+    dest: "{{ home }}/fake-backend"
     accept_hostkey: yes
     force: yes
     recursive: no
