@@ -28,7 +28,7 @@
     - deploy
 - name: retrieve battleboat code source
   git:
-    repo: git@github.com:vumay/battleboat-jenkins-CD.git
+    repo: https://github.com/alexandrevilain/fake-backend.git
     dest: "{{ home }}/fake-backend"
     accept_hostkey: yes
     force: yes
@@ -41,7 +41,7 @@
 
 - name: Build api image and push it to Docker Hub
   docker_image:
-    path: "{{ home }}/fake-backend"
+    path: "{{ home }}/fake-backend/"
     name: "{{ docker_hub_login }}/fake-backend"
     push: yes
     tag: jenkinsCD
