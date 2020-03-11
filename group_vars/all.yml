@@ -1,6 +1,6 @@
 ---
 fake-backend_source_repo: "git@github.com:vumay/battleboat-jenkins-CD.git"
-fake-backendt_source_branch: "master"
+fake-backend_source_branch: "master"
 
 fake-backend_docker_image_tag: "jenkinsCD"
 
