@@ -44,7 +44,7 @@
     path: "{{ home }}/fake-backend"
     name: "{{ docker_hub_login }}/fake-backend"
     push: yes
-    tag: "{{ fake-backend_docker_image_tag }}"
+    tag: jenkinsCD
   tags:
     - build
 
@@ -89,7 +89,7 @@
     volumes:
       - "{{ home }}/battleboat:/etc/backend/static"
     environment:
-      DATABASE_HOST: "db-samiamr"
+      DATABASE_HOST: "db-vumay"
       DATABASE_PORT: "3306"
       DATABASE_USER: "battleuser"
       DATABASE_PASSWORD: "battlepass"
