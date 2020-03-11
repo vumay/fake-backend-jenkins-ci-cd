@@ -29,7 +29,7 @@
 
 - name: Retrieve fake-backend addons source code
   git:
-    repo: "{{ fake-backend_source_repo  }}"
+    repo: "{{ fake-backend_source_repo }}"
     dest: "{{ home }}/fake-backend/"
     accept_hostkey: yes
     force: yes
