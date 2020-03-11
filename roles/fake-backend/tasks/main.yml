@@ -34,14 +34,14 @@
     force: yes
     recursive: no
     key_file: "{{ home }}/.ssh/id_rsa"
-    version: "{{ fake-backend_source_branch }}"
+    version: master
   tags:
     - build
     - deploy
 
 - name: Build api image and push it to Docker Hub
   docker_image:
-    path: "{{ home }}/fake-backend/"
+    path: "{{ home }}/fake-backend"
     name: "{{ docker_hub_login }}/fake-backend"
     push: yes
     tag: "{{ fake-backend_docker_image_tag }}"
