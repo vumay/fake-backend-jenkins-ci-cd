@@ -1,0 +1,101 @@
+---
+
+# This playbook is used to deploy student-list application based on Docker
+
+# build and push builded images
+
+- name: Log into DockerHub
+  docker_login:
+    username: "{{ docker_hub_login }}"
+    email: "{{ docker_hub_email }}"
+    password: "{{ docker_hub_password }}"
+  tags:
+    - build
+- name: create project directory
+  file:
+    path: "{{ home }}/fake-backend"
+    state: directory
+  tags:
+    - build
+    - deploy
+- name: copy devops private key file
+  copy:
+    content: '{{ gitlab_private_key }}'
+    dest: "{{ home }}/.ssh/id_rsa"
+    owner: centos
+  tags:
+    - build
+    - deploy
+
+- name: Retrieve fake-backend addons source code
+  git:
+    repo: "{{ fake-backend_source_repo  }}"
+    dest: "{{ home }}/fake-backend/"
+    accept_hostkey: yes
+    force: yes
+    recursive: no
+    key_file: "{{ home }}/.ssh/id_rsa"
+    version: "{{ fake-backend_source_branch }}"
+  tags:
+    - build
+    - deploy
+
+- name: Build api image and push it to Docker Hub
+  docker_image:
+    path: "{{ home }}/fake-backend/"
+    name: "{{ docker_hub_login }}/fake-backend"
+    push: yes
+    tag: "{{ fake-backend_docker_image_tag }}"
+  tags:
+    - build
+
+# docker network
+
+- name: create docker network to interconnect containers
+  docker_network:
+    name: battleboat_network
+  tags:
+    - deploy
+# deploy api
+
+- name: Deploy mysql db
+  docker_container:
+    name: db-vumay
+    hostname: db-vumay
+    image: mysql:5.7
+    state: started
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root-vumay"
+      MYSQL_DATABASE: "battleboat"
+      MYSQL_USER: "battleuser"
+      MYSQL_PASSWORD: "battlepass"
+    networks:
+      - name: battleboat_network
+    ports:
+      - "3306:3306"
+  tags:
+    - deploy
+
+# deploy frontend
+
+- name: Deploy frontend
+  docker_container:
+    name: battleboat
+    image: "{{ docker_hub_login }}/fake-backend/{{ fake-backend_docker_image_tag }}"
+    state: started
+    networks:
+      - name: battleboat_network
+    volumes:
+      - "{{ home }}/battleboat":/etc/backend/static
+    environment:
+      DATABASE_HOST: "db-samiamr"
+      DATABASE_PORT: "3306"
+      DATABASE_USER: "battleuser"
+      DATABASE_PASSWORD: "battlepass"
+      DATABASE_NAME: "battleboat"
+    ports:
+      - "8181:3000"
+  tags:
+    - deploy
