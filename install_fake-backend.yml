@@ -13,10 +13,12 @@
         - name: Install EPEL repo
           package: name=epel-release state=present
           when: ansible_distribution == "CentOS"
-
+          tags:
+            - always
         - name: install python-pip
           package: name=python-pip state=present update_cache=yes
-
+          tags:
+            - always
         - name: install git
           package: name=git state=present
           tags:
