@@ -20,7 +20,7 @@
         - name: install git
           package: name=git state=present
         tags:
-          - always
+            - always
 
   roles:
     - {role: geerlingguy.pip, tags: [always]}

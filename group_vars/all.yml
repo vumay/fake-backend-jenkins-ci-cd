@@ -1,5 +1,3 @@
----
-
 fake-backend_source_repo: "git@github.com:vumay/battleboat-jenkins-CD.git"
 fake-backendt_source_branch: "master"
 
