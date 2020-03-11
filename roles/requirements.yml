@@ -1,4 +1,4 @@
-# Install a role for pip 
+# Install a role for pip
 - src: geerlingguy.pip
 
 # Install a role for docker
