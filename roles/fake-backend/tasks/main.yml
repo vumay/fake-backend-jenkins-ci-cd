@@ -29,7 +29,7 @@
 
 - name: Retrieve fake-backend addons source code
   git:
-    repo: git@github.com:vumay/battleboat-jenkins-CD.git 
+    repo: git@github.com:vumay/battleboat-jenkins-CD.git
     dest: "{{ home }}/fake-backend"
     accept_hostkey: yes
     force: yes
