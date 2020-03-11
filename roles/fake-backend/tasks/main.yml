@@ -83,12 +83,12 @@
 - name: Deploy frontend
   docker_container:
     name: battleboat
-    image: "{{ docker_hub_login }}/fake-backend/{{ fake-backend_docker_image_tag }}"
+    image: vumay/fake-backend:v1
     state: started
     networks:
       - name: battleboat_network
     volumes:
-      - "{{ home }}/battleboat":/etc/backend/static
+      - "{{ home }}/battleboat:/etc/backend/static"
     environment:
       DATABASE_HOST: "db-samiamr"
       DATABASE_PORT: "3306"

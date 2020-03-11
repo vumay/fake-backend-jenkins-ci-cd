@@ -1,7 +1,7 @@
- # Install a role for pip 
-- src: geerlingguy.pip 
+# Install a role for pip 
+- src: geerlingguy.pip
 
- # Install a role for docker 
+# Install a role for docker
 - src: geerlingguy.docker
 
 # Install a role for gitlab/gitlab-runner
