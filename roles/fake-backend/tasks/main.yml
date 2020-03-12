@@ -87,7 +87,7 @@
     networks:
       - name: battleboat_network
     volumes:
-      - "{{ home }}/battleboat/:/etc/backend/static"
+      - "{{ home }}/fake-backend/battleboat:/etc/backend/static"
     env:
       DATABASE_HOST: "db-vumay"
       DATABASE_PORT: "3306"
