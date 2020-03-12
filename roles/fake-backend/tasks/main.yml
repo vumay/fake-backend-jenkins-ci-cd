@@ -28,7 +28,7 @@
     - deploy
 - name: retrieve battleboat code source
   git:
-    repo: https://github.com/alexandrevilain/fake-backend.git
+    repo: https://github.com/vumay/fake-backend.git
     dest: "{{ home }}/fake-backend"
     accept_hostkey: yes
     force: yes
