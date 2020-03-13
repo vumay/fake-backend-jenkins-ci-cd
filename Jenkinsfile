@@ -93,6 +93,7 @@ pipeline {
                    }
                }
             }
+         }
                stage("Deploy app in production") {
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
