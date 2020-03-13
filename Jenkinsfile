@@ -69,12 +69,31 @@ pipeline {
                }
                stage("Build docker images on build host") {
                    when {
-                      expression { GIT_BRANCH == 'origin/master' }
+                      expression { GIT_BRANCH == 'origin/dev' }
                   }
                    steps {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "build" --limit build install_fake-backend.yml'
                    }
                }
+               stage("Deploy app in production") {
+                    when {
+                       expression { GIT_BRANCH == 'origin/dev' }
+                    }
+                   steps {
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "deploy" --limit preprod install_fake-backend.yml'
+                       }
+                   }
+               stage("Deploy app in production") {
+                    when {
+                       expression { GIT_BRANCH == 'origin/dev' }
+                    }
+                   steps {
+                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "deploy" --limit preprod check_deploy_app.yml'
+                       }
+                   }
+
+               }
+            }
                stage("Deploy app in production") {
                     when {
                        expression { GIT_BRANCH == 'origin/master' }
@@ -83,7 +102,4 @@ pipeline {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "deploy" --limit prod install_fake-backend.yml'
                        }
                    }
-               }
-            }
-         }
-      }
+
