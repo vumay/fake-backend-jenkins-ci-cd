@@ -12,10 +12,10 @@
       delay: 5
 
     - name: Check webservice application production
-       uri:
-         url: http://{{ ip_addr_preprod }}:{{ port_app }}/health
-         method: GET
-         retries: 8
-         delay: 5
-         tags:
-           - deploy
+      uri:
+        url: http://{{ ip_addr_preprod }}:{{ port_app }}/health
+        method: GET
+        retries: 8
+        delay: 5
+        tags:
+          - deploy
