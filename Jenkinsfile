@@ -91,7 +91,6 @@ pipeline {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "deploy" --limit preprod check_deploy_app.yml'
                        }
                    }
-
                }
             }
                stage("Deploy app in production") {
