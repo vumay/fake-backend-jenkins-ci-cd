@@ -3,7 +3,6 @@
   become: true
   vars_files:
     - "files/secrets/devops.yml"
- 
   tasks:
     - block:
     - name: Check that you can connect to webpage
@@ -20,4 +19,3 @@
          delay: 5
          tags:
            - deploy
-
