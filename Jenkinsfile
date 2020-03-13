@@ -81,8 +81,8 @@ pipeline {
                     }
                    steps {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "deploy" --limit preprod install_fake-backend.yml'
-                       }
                    }
+               }
                stage("Deploy app in production") {
                     when {
                        expression { GIT_BRANCH == 'origin/dev' }
