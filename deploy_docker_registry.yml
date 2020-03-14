@@ -21,10 +21,9 @@
               - "5000:5000"
             restart_policy: "always"
         
-       
         - name: Deploy Registry-UI
           docker_container:
-            name: 
+            name:
             hostname: registry-ui
             image: joxit/docker-registry-ui:static
             state: started
@@ -42,9 +41,9 @@
   tasks:
     - name: Tag and push to local registry
       docker_image:
-        name: centos
-        repository: localhost:5000/centos
-        tag: 
+        name: vumay/fake-backend:1.0 
+        repository: localhost:5000/vumay/fake-backend
+        tag: 1.0
         push: yes
         tags:
           - deploy
