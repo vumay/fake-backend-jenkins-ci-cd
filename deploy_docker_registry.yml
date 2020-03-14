@@ -23,7 +23,7 @@
 
         - name: Deploy Registry-UI
           docker_container:
-            name:
+            name: registry_ui
             hostname: registry-ui
             image: joxit/docker-registry-ui:static
             state: started
@@ -33,9 +33,9 @@
               - "4002:80"
             restart_policy: "always"
             env:
-              REGISTRY_URL=http://registry:5000
-              DELETE_IMAGES=true
-              REGISTRY_TITLE=MY_REGISTRY
+              REGISTRY_URL: "http://registry:5000"
+              DELETE_IMAGES: "true"
+              REGISTRY_TITLE: "MY_REGISTRY"
             tags:
               - prod
   tasks:
