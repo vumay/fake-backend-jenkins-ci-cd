@@ -6,7 +6,7 @@
         - name: Create docker network
           docker_network:
             name: myregistry
-            
+
         - name: Deploy private Registry
           docker_container:
             name: registry
@@ -41,7 +41,7 @@
   tasks:
     - name: Tag and push to local registry
       docker_image:
-        name: vumay/fake-backend:1.0 
+        name: vumay/fake-backend:1.0
         repository: localhost:5000/vumay/fake-backend
         tag: 1.0
         push: yes
