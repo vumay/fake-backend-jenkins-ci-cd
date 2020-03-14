@@ -10,11 +10,8 @@
         - name: Deploy private Registry
           docker_container:
             name: registry
-            hostname: registry
             image: registry:2
             state: started
-            volumes:
-              - ./{{home}}/db-data:/var/lib/registry
             networks:
               - name: myregistry
             ports:
@@ -24,7 +21,6 @@
         - name: Deploy Registry-UI
           docker_container:
             name: registry_ui
-            hostname: registry-ui
             image: joxit/docker-registry-ui:static
             state: started
             networks:
