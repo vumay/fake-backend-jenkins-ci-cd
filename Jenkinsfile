@@ -142,7 +142,7 @@
                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod check_deploy_app.yml'
                   }
                }
-               stage("Ensure application is deployed in production") {
+               stage("deploy to private registry") {
                   when {
                       expression { GIT_BRANCH == 'origin/master' }
                   }
