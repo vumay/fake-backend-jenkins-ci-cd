@@ -129,7 +129,7 @@
                stage("Deploy application in production") {
                    when {
                       expression { GIT_BRANCH == 'origin/master' }
-                  }
+                   }
                    steps {
                        sh 'ansible-playbook  -i hosts --vault-password-file vault.key --private-key id_rsa --tags "prod" --limit prod install_fake-backend.yml'
                    }
@@ -139,10 +139,19 @@
                       expression { GIT_BRANCH == 'origin/master' }
                   }
                   steps {
-                      sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" check_deploy_app.yml'
+                      sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod check_deploy_app.yml'
                   }
                }
-            }
-         }
-   }
-}
+               stage("Ensure application is deployed in production") {
+                  when {
+                      expression { GIT_BRANCH == 'origin/master' }
+                  }
+                  steps {
+                      sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod deploy_deocker_registry.yml'
+                  }
+               }
+           }
+         }                      
+       }
+     } 
+   }       

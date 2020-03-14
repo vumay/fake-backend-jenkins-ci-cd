@@ -1,0 +1,50 @@
+- name: deploy to private registry
+  hosts: prod
+  become: true
+  pre-tasks:
+    - block:
+        - name: Create docker network
+          docker_network:
+            name: myregistry
+            
+        - name: Deploy private Registry
+          docker_container:
+            name: registry
+            hostname: registry
+            image: registry:2
+            state: started
+            volumes:
+              - ./{{home}}/db-data:/var/lib/registry
+            networks:
+              - name: myregistry
+            ports:
+              - "5000:5000"
+            restart_policy: "always"
+        
+       
+        - name: Deploy Registry-UI
+          docker_container:
+            name: 
+            hostname: registry-ui
+            image: joxit/docker-registry-ui:static
+            state: started
+            networks:
+              - name: myregistry
+            ports:
+              - "4002:80"
+            restart_policy: "always"
+            env:
+              REGISTRY_URL=http://registry:5000
+              DELETE_IMAGES=true
+              REGISTRY_TITLE=my_registry
+              tags:
+                - deploy
+  tasks:
+    - name: Tag and push to local registry
+      docker_image:
+        name: centos
+        repository: localhost:5000/centos
+        tag: 
+        push: yes
+        tags:
+          - deploy
