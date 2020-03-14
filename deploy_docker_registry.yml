@@ -9,6 +9,12 @@
             name: myregistry
           tags:
             - prod
+        - name: pull an image
+          docker_image:
+            name: registry:2
+            source: pull
+            tags :
+              - prod
 
         - name: Deploy private Registry
           docker_container:
