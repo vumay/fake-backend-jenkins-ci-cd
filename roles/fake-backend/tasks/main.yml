@@ -19,7 +19,7 @@
     - build
     - preprod
     - prod
- 
+
 - name: copy devops private key file
   copy:
     content: '{{ gitlab_private_key }}'
@@ -29,6 +29,7 @@
     - build
     - preprod
     - prod
+
 - name: retrieve battleboat code source
   git:
     repo: https://github.com/vumay/fake-backend.git
