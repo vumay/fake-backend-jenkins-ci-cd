@@ -26,8 +26,8 @@
             ports:
               - "5000:5000"
             restart_policy: "always"
-            tags:
-              - prod
+          tags:
+            - prod
 
         - name: Deploy Registry-UI
           docker_container:
@@ -43,5 +43,5 @@
               REGISTRY_URL: "http://registry:5000"
               DELETE_IMAGES: "true"
               REGISTRY_TITLE: "MY_REGISTRY"
-            tags:
-              - prod
+          tags:
+            - prod
