@@ -57,7 +57,7 @@
 
 - name: create docker network to interconnect containers
   docker_network:
-    name: battleboat_network
+    name: battleboat
   tags:
     - preprod
     - prod
@@ -77,7 +77,7 @@
       MYSQL_USER: "battleuser"
       MYSQL_PASSWORD: "battlepass"
     networks:
-      - name: battleboat_network
+      - name: battleboat
     ports:
       - "3306:3306"
   tags:
@@ -92,7 +92,7 @@
     image: vumay/fake-backend:jenkinsCD
     state: started
     networks:
-      - name: battleboat_network
+      - name: battleboat
     volumes:
       - "{{ home }}/fake-backend/battleboat:/etc/backend/static"
     env:
