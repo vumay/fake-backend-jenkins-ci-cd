@@ -9,6 +9,7 @@
             name: myregistry
           tags:
             - prod
+
         - name: Deploy private Registry
           docker_container:
             name: registry
@@ -19,6 +20,8 @@
             ports:
               - "5000:5000"
             restart_policy: "always"
+            tags:
+              - prod
 
         - name: Deploy Registry-UI
           docker_container:
