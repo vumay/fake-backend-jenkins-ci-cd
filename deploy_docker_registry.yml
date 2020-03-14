@@ -13,8 +13,8 @@
           docker_image:
             name: registry:2
             source: pull
-            tags :
-              - prod
+          tags :
+            - prod
 
         - name: Deploy private Registry
           docker_container:
