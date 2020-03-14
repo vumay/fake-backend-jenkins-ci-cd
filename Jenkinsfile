@@ -147,7 +147,7 @@
                       expression { GIT_BRANCH == 'origin/master' }
                   }
                   steps {
-                      sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod deploy_deocker_registry.yml'
+                      sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod deploy_docker_registry.yml'
                   }
                }
            }
