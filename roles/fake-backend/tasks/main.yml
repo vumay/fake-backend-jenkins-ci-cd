@@ -17,7 +17,9 @@
     state: directory
   tags:
     - build
-    - deploy
+    - preprod
+    - prod
+ 
 - name: copy devops private key file
   copy:
     content: '{{ gitlab_private_key }}'
@@ -25,7 +27,8 @@
     owner: centos
   tags:
     - build
-    - deploy
+    - preprod
+    - prod
 - name: retrieve battleboat code source
   git:
     repo: https://github.com/vumay/fake-backend.git
@@ -37,7 +40,8 @@
     version: master
   tags:
     - build
-    - deploy
+    - preprod
+    - prod
 
 - name: Build api image and push it to Docker Hub
   docker_image:
@@ -54,7 +58,8 @@
   docker_network:
     name: battleboat_network
   tags:
-    - deploy
+    - preprod
+    - prod
 # deploy api
 
 - name: Deploy mysql db
@@ -75,7 +80,8 @@
     ports:
       - "3306:3306"
   tags:
-    - deploy
+    - preprod
+    - prod
 
 # deploy frontend
 
@@ -97,4 +103,5 @@
     ports:
       - "8181:3000"
   tags:
-    - deploy
+    - preprod
+    - prod
