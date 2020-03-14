@@ -1,7 +1,7 @@
 - name: deploy to private registry
   hosts: prod
   become: true
-  pre_tasks:
+  tasks:
     - block:
         - name: Create docker network
           docker_network:
