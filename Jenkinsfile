@@ -122,7 +122,7 @@
                       expression { GIT_BRANCH == 'origin/master' }
                    }
                    steps {
-                       sh 'ansible-lint -x 306 install_student_list.yml'
+                       sh 'ansible-lint -x 306 install_fake-backend.yml'
                        sh 'echo "${GIT_BRANCH}"'
                    }
                }
