@@ -37,7 +37,7 @@
               DELETE_IMAGES=true
               REGISTRY_TITLE=MY_REGISTRY
             tags:
-              - deploy
+              - prod
   tasks:
     - name: Tag and push to local registry
       docker_image:
@@ -46,4 +46,4 @@
         tag: 1.0
         push: yes
         tags:
-          - deploy
+          - prod
