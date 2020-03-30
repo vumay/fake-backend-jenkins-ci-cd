@@ -1,4 +1,4 @@
-/* import shared library */
+*/* import shared library */
 @Library('jenkins-shared-library')_
  
 pipeline {
@@ -164,4 +164,5 @@ pipeline {
             /* Use slackNotifier.groovy from shared library and provide current build result as parameter */
             slackNotifier currentBuild.result
      }
-    }
+  }
+}   
