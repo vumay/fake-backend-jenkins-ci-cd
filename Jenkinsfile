@@ -1,7 +1,7 @@
 /* import shared library */
 @Library('jenkins-shared-library')
  
-  pipeline {
+pipeline {
     agent none
     stages {
         stage('Check bash syntax') {
