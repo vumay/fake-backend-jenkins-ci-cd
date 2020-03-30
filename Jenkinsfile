@@ -7,7 +7,7 @@ pipeline {
         stage('Check bash syntax') {
             agent { docker { image 'koalaman/shellcheck-alpine:stable' } }
             steps {
-              scripts { bashCheck }
+                scripts { bashCheck }
             }
         }
 
