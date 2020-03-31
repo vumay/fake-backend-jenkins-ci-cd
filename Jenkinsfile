@@ -137,11 +137,11 @@ pipeline {
          }                      
        }
      } 
-    post {
-    always {
-        script {
-        /* Use slackNotifier.groovy from shared library and provide current build result as parameter */
-        slackNotifier currentBuild.result
+      post {
+      always {
+          script {
+          /* Use slackNotifier.groovy from shared library and provide current build result as parameter */
+          slackNotifier currentBuild.result
      }
   }
 }   
