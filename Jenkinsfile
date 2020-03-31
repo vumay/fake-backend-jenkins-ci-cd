@@ -133,10 +133,7 @@ pipeline {
                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod check_deploy_app.yml'
                   }
                }
-           }
-         }                      
-       }
-     } 
+      }
       post {
       always {
          script {
