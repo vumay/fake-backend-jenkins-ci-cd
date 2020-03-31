@@ -133,14 +133,6 @@ pipeline {
                       sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod check_deploy_app.yml'
                   }
                }
-               stage("deploy to private registry") {
-                  when {
-                      expression { GIT_BRANCH == 'origin/master' }
-                  }
-                  steps {
-                      sh 'ansible-playbook  -i hosts --vault-password-file vault.key --tags "prod" --limit prod deploy_docker_registry.yml'
-                  }
-               }
            }
          }                      
        }

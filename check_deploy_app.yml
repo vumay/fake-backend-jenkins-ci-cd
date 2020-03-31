@@ -7,15 +7,15 @@
     - block:
         - name: Check that you can connect to webpage
           uri:
-            url: http://{{ ip_addr_preprod }}:{{ port_app }}
+            url: http://3.91.242.173
           retries: 8
           delay: 5
 
         - name: Check webservice application production
           uri:
-            url: http://{{ ip_addr_preprod }}:{{ port_app }}/health
+            url: http://3.91.242.173/health
             method: GET
           retries: 8
           delay: 5
       tags:
-        - preprod
+        - prod
