@@ -17,5 +17,5 @@
             method: GET
           retries: 8
           delay: 5
-        tags:
-          - preprod
+      tags:
+        - preprod
