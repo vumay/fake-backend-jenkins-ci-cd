@@ -69,6 +69,7 @@
     hostname: db-vumay
     image: mysql:5.7
     state: started
+    restart_policy: always
     volumes:
       - db-data:/var/lib/mysql
     env:
@@ -91,6 +92,7 @@
     name: battleboat
     image: vumay/fake-backend:jenkinsCD
     state: started
+    restart_policy: always
     networks:
       - name: battleboat
     volumes:
@@ -102,7 +104,7 @@
       DATABASE_PASSWORD: "battlepass"
       DATABASE_NAME: "battleboat"
     ports:
-      - "8181:3000"
+      - "80:3000"
   tags:
     - preprod
     - prod

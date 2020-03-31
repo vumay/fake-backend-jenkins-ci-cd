@@ -15,7 +15,7 @@
           uri:
             url: http://{{ ip_addr_preprod }}:{{ port_app }}/health
             method: GET
-            retries: 8
-            delay: 5
-            tags:
-              - deploy
+          retries: 8
+          delay: 5
+        tags:
+          - deploy
