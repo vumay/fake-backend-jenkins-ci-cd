@@ -1,5 +1,5 @@
 # Description
 
-sssThis repository is used to demonstrate how to use Jenkinsfile to build pipeline
+This repository is used to demonstrate how to use Jenkinsfile to build pipeline
 
 
